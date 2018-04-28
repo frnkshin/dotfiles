@@ -1,0 +1,66 @@
+;;; package --- summary
+
+;;; Commentary:
+;; init.el that is run first to initialize my Emacs configuration
+
+;;; Code:
+
+;; initialize melpa and package
+(defun sys-config/melpa ()
+  "Set up system package manager."
+  (require 'package)
+  (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                      (not (gnutls-available-p))))
+         (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+    (add-to-list 'package-archives (cons "melpa" url) t))
+  (when (< emacs-major-version 24)
+    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+  (package-initialize))
+
+(defvar base-dir)
+(defun user-config/dependencies ()
+  "Set up user defendency settings."
+  (setq base-dir (expand-file-name "/home/rob/.emacs.d/lib" user-emacs-directory))
+  (setq custom-file (expand-file-name "/home/rob/.emacs.d/custom.el" user-emacs-directory))
+  (add-to-list 'load-path base-dir)
+  (load custom-file)
+  (require 'visual)
+  (require 'org-indent)
+  (require 'base-packages)
+  (require 'languages)
+  (require 'keymap)
+  )
+
+;; Disable start screen.
+;; t   := inhibit
+;; nil := otherwise
+
+(defun user-config/variables ()
+  "Set up user variables."
+  ;; Hide startup screen, t: inhibit, nil: un-inhibit
+  (setq inhibit-startup-screen t)
+
+  ;; Select tabs/spaces for indents, t: tabs, nil: spaces
+  (setq-default indent-tabs-mode nil) ; use spaces
+
+  ;; Set tab width, num: number of spaces
+  (setq-default tab-width 4)
+  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+  (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+        backup-by-copying t
+        version-control t
+        delete-old-versions t
+        kept-new-versions 20
+        kept-old-versions 5))
+
+(defun run ()
+  "Main init function."
+  (sys-config/melpa)
+  (user-config/dependencies)
+  (user-config/variables))
+
+(run)
+
+;;; init.el ends here

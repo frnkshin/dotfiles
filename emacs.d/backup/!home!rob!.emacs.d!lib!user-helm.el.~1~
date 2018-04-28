@@ -1,0 +1,19 @@
+;;; user-configs --- contains user configuration
+;;; Commentary:
+;;; Code:
+(require 'shackle)
+(setq shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :ratio 0.4)))
+(shackle-mode)
+
+(defun configure-helm ()
+  "Configures helm."
+  (require 'helm)
+  (require 'helm-config)
+  (helm-mode 1)
+  (helm-M-x 1))
+
+(configure-helm)
+
+(provide 'base-packages)
+
+;;; base-packages.el ends here

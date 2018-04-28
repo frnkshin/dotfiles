@@ -1,0 +1,193 @@
+%-------------------------
+% Resume in Latex
+% Author : Sourabh Bajaj
+% License : MIT
+%------------------------
+% Updated by: Hansol Shin
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.25in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemCourse}[1]{
+  \item\small{
+    \textbf{#1}\vspace{-2pt}
+  }
+}
+
+\newcommand{\resumeItemWork}[1]{
+    \hspace{20pt}\item\small{
+    \textbf{#1}\vspace{-2pt}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingWork}[6]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+      \textnormal{\small#5} \\
+      \textnormal{\small#6} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubheadingSingle}[1]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1}
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+\newcommand{\resumeSubItemCourse}[1]{\resumeItemCourse{#1}\vspace{-4pt}}
+\newcommand{\resumeSubItemWork}[1]{\resumeItemWork{#1}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-2pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{http://github.com/hshin23}{\Large Hansol Shin}} & Email : \href{mailto:hshin23@gmu.edu}{hshin23@gmu.edu}\\
+  \href{http://github.com/hshin23}{http://www.github.com/hshin23} & Mobile : 703-232-6095 \\
+\end{tabular*}
+
+%-----------OBJECTIvE-----------------
+\section{Objective}
+  \resumeSubHeadingListStart
+      \item{A U.S. citizen with strong analytical and problem solving skills looking to acquire an entry-level full-time position
+          in software development to learn new technologies and apply my
+          knowledg projects.}
+  \resumeSubHeadingListEnd
+
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {George Mason University}{Fairfax, VA}
+      {Bachelor of Science in Computer Science}{Jan. 2016 -- Dec. 2017}
+    \resumeSubheading
+      {Northern Virginia Community College}{Annandale, VA}
+      {Associate of Science in Computer Science}{Jan. 2012 -- Dec. 2015}
+  \resumeSubHeadingListEnd
+
+
+%-----------SKILLS-----------------
+\section{Skills}
+  \resumeSubHeadingListStart
+
+    \item{
+      \textbf{Languages}{: C, Python, Java}
+      \vspace{-4px}
+    }
+    \item{
+      \textbf{Technologies}{: Android, Firebase, Linux, Git}
+      \vspace{-12px}
+    }
+  \resumeSubHeadingListEnd
+
+
+%-----------COURSEWORK-----------------
+\section{Coursework}
+  \resumeSubHeadingListStart
+    \resumeSubItemCourse{Computer Systems}
+    \resumeSubItemCourse{Computer Architecture}
+    \resumeSubItemCourse{Analysis of Algorithms}
+    \resumeSubItemCourse{Data Structures}
+    \resumeSubItemCourse{Database Concepts}
+    \resumeSubItemCourse{Data Mining}
+    \resumeSubItemCourse{Software Testing and Maintenance}
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\section{Projects and Accomplishments}
+  \resumeSubHeadingListStart
+    \resumeSubItem{Amazon Review Classifier (Python)}
+      {\\Data mining project for data mining class.
+       \\ Trains from 18000 Amazon product reviews, and classifies new reviews to correct criteria.}
+    \resumeSubItem{UniSell (Java, Swift, Php)}
+      {\\Android/iOS app that allows students to sell their stuff on campus.
+       \\Contributed working on Android version of the app.}
+    \resumeSubItem{Aularm (Java, Firebase)}
+      {\\Android app that wakes a person based on their calendar events. Built for a class project.}
+    \resumeSubItem{Fake News Detector (Python, NLTK, scikit)}
+      {\\Data mining project for data mining class.
+       \\Uses real news data to detect whether a news is fake or not.}
+  \resumeSubHeadingListEnd
+
+\section{Work Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheadingWork
+      {Hmart Centreville, LLC}{Centreville, VA}
+      {Office Manager}{Jan. 2012 -- Mar. 2014}
+      {Provided daily and weekly reports for the store manager.}
+      {Managed yearly inventory check}
+      \vspace{-8pt}
+  \resumeSubHeadingListEnd
+%--------OTHEr SKILLS------------
+\section{Other Skills}
+  \resumeSubHeadingListStart
+    \resumeSubItemCourse{Fluent in English and Korean}
+  \resumeSubHeadingListEnd
+      
+%-------------------------------------------
+\end{document}

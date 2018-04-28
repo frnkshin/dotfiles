@@ -1,0 +1,16 @@
+import sys
+import os
+
+
+class Node:
+    def __init__(self, name, neighbors):
+        self.name = name
+        self.neighbors = neighbors
+
+class Tree:
+    def __init__(self, root):
+        self.root = root
+
+if __name__ == "__main__":
+    
+    # os.system("sbcl --noinform --load states.cl --eval '(progn (run) (sb-ext:quit))'")

@@ -1,0 +1,34 @@
+set font                        "Source Code Pro 10"
+set default-bg                  "#2D2D2D"
+set default-fg                  "#BBBC9A"
+
+set statusbar-bg                "#2D2D2D"
+set statusbar-fg                "#BBBC9A"
+
+set inputbar-bg                 "#2D2D2D"
+set inputbar-fg                 "#BBBC9A"
+
+set notification-error-fg       "#2D2D2D"
+set notification-error-bg       "#657056"
+
+set notification-warning-fg     "#2D2D2D"
+set notification-warning-bg     "#4f473a"
+
+set highlight-color             "#2D2D2D"
+set highlight-active-color      "#BBBC9A"
+
+set completion-highlight-fg     "#2D2D2D"
+set completion-highlight-bg     "#458588"
+
+set completion-fg               "#BBBC9A"
+set completion-bg               "#2D2D2D"
+
+set notification-fg             "#4c544f"
+set notification-bg             "#2D2D2D"
+
+set recolor-lightcolor          "#2D2D2D"
+set recolor-darkcolor           "#BBBC9A"
+set recolor                     "true"
+
+map n navigate next
+map p navigate previous

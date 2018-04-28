@@ -1,0 +1,33 @@
+(defvar MAP-PLOT)
+(setq MAP-PLOT
+      (list (list (list 'A 'B) 300)
+            (list (list 'A 'C) 100)
+            (list (list 'A 'D) 100)
+            (list (list 'A 'E) 75)
+            (list (list 'B 'A) 300)
+            (list (list 'B 'C) 50)
+            (list (list 'B 'D) 100)
+            (list (list 'B 'E) 125)
+            (list (list 'C 'A) 100)
+            (list (list 'C 'B) 50)
+            (list (list 'C 'D) 75)
+            (list (list 'C 'E) 125)
+            (list (list 'D 'A) 100)
+            (list (list 'D 'B) 100)
+            (list (list 'D 'C) 75)
+            (list (list 'D 'E) 50)
+            (list (list 'E 'A) 75)
+            (list (list 'E 'B) 125)
+            (list (list 'E 'C) 125)
+            (list (list 'E 'D) 50)))
+
+(defun INIT-LOOP (lst)
+  (let ((nlst '()) (r 0) (len (length lst)))
+    (loop for i from 1 to len do
+         (setf r (random (length lst)))
+         (setf nlst (append nlst (list (nth r lst))))
+         (setf lst (remove (nth r lst) lst)))
+    (append nlst (list (first nlst)))))
+
+
+(INIT-LOOP (list 'A 'B 'C 'D 'E))

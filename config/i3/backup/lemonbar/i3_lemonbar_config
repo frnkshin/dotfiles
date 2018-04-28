@@ -1,0 +1,119 @@
+#!\bin\bash
+# i3 panel config. Powerline style.
+
+panel_fifo="/tmp/i3_lemonbar_${USER}"
+
+num_monitor=$(xrandr | grep "*+" | wc -l)
+
+if [ $num_monitor -eq 1 ]
+then
+  geometry=$(xrandr | grep "primary" | cut -d'x' -f1 | awk '{print $4}')
+  geometry+="x16+0+0"
+fi
+
+if [ $num_monitor -eq 2 ]
+then
+  first=$(xrandr | grep "*+" | awk 'NR==1{print $1}' | cut -d'x' -f1)
+  second=$(xrandr | grep "*+" | awk 'NR==2{print $1}' | cut -d'x' -f1)
+  if [ $second -gt $first ]
+  then
+    geometry=$second
+    geometry+="x16+0+0"
+  fi
+  
+  if [ $first -gt $second]
+  then
+    geometry=$first
+    geometry+="x16+0+0"
+  fi
+fi
+
+# font="monofur for Powerline-8"
+# font="Roboto Mono for Powerline-7"
+font="ohsnap-7"
+iconfont="fontawesome-7"
+
+res_w=$(xrandr | grep "primary" | cut -d'x' -f1 | awk '{print $4}')
+snd_cha=$(amixer get Master | grep "Playback channels:" | awk '{if ($4 == "") {printf "%s: Playback", $3} else {printf "%s %s: Playback", $3, $4}}')
+
+# Alarm settings
+cpu_alert=75                        # % cpu use
+net_alert=5                         # K net use
+
+# update setting, in seconds (conky update in i3_lemonbar_conky
+upd_vol=3                           # Volume update
+upd_mpd=1                           # MPD song update
+
+color_back="#FF0C1014"              # Default background
+color_fore="#FF21967C"              # Default foreground
+color_head="#FF204A56"              # Background for first element
+color_sec_b1="#FF000000"            # Background for section 1
+color_sec_b2="#FF0C1014"            # Background for section 2
+color_sec_b3="#FFDDEEDD"            # Background for section 3
+color_prog="#504945"
+color_prog_icon="#A89984"
+color_title_fore="#0C1014"
+color_icon="#FF979997"              # For icons
+color_mail="#FFCE935F"              # Background color for mail alert
+color_chat="#FFCC6666"              # Background color for chat alert
+color_cpu="#FF5F819D"               # Background color for cpu alert
+color_net="#FF504945"               # Background color for net alert
+color_disable="#FFFFFFFF"           # Foreground for disable elements
+color_wsp="#FFD75F00"               # Background for selected workspace
+color_wsicon="#FF21967C"		        # Color of the first icon
+color_focusws="#FFFFFFFF"		        # Color of the focused ws name
+color_a="#FF0C0924"
+color_b="#FF0C1024"
+color_c="#FF204A56"
+color_b_fore="#FF21967C"
+color_bat="#FFD7FF87"
+color_red="#FF9C2520"
+color_blue="#FFD75F00"
+color_rpm_fore="#FFFFFFFF"
+color_bdate="#FF1D2021"
+color_time="#FF204A56"
+
+#default space between sections
+if [ ${res_w} -gt 1024 ]; then
+  stab='  '
+else
+  stab=' '
+fi
+
+# Char glyps for powerline fonts
+sep_left=""                        # Powerline separator left
+sep_right=""                       # Powerline separator right
+sep_l_left=""                      # Powerline light separator left
+sep_l_right=""                     # Powerline light sepatator right
+
+# Icon glyphs from Terminusicons2
+# icon_clock="Õ"                      # Clock icon
+# icon_cpu="Ï"                        # CPU icon
+# icon_mem="Þ"                        # MEM icon
+# icon_dl="Ð"                         # Download icon
+# icon_ul="Ñ"                         # Upload icon
+# icon_vol="Ô"                        # Volume icon
+# icon_hd="À"                         # HD / icon
+# icon_home="Æ"                       # HD /home icon
+# icon_mail="Ó"                       # Mail icon
+# icon_chat="Ò"                       # IRC/Chat icon
+# icon_music="Î"                      # Music icon
+# icon_prog="Â"                       # Window icon
+# icon_contact="Á"                    # Contact icon
+# icon_wsp="É"                        # Workspace icon
+
+# Icon glyphs from font-awesome
+icon_bat=""						# Battery icon
+icon_temp=""
+icon_ul=""
+icon_dl=""
+icon_music=""
+icon_mail=""
+icon_vol=""
+icon_cpu=""
+icon_mem=""
+icon_clock=""
+icon_hd=""
+icon_home=""
+icon_prog=""
+icon_wsp=" "

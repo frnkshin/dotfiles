@@ -1,0 +1,1 @@
+("~/" "~/dev/google-home-notifier/" "~/dev/summarizer/" "~/dev/map-coloring/")

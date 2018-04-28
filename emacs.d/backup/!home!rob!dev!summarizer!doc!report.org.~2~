@@ -1,0 +1,37 @@
+#+TITLE: Word2Vec with Multiple Instance Learning to Detect Fake News
+#+AUTHOR: Hansol Shin
+#+LaTeX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \doublespacing
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+OPTIONS: H:2
+#+OPTIONS: toc:nil
+
+\newpage
+
+* Abstract
+  
+Key Terms to discuss
+3. Word2Vec
+    1. Hierarchial Softmax
+    2. Softmax
+2. TF IDF
+3. SVM
+4. Corpus
+5. Multiple Instance Learning
+6. 
+
+
+  
+* Word2Vec
+
+Using min_count > 10
+|---------------+-----------+---------+-------|
+| CV Percentile |  Accuracy | Correct | Total |
+|---------------+-----------+---------+-------|
+|           90% |    63.73% |    1056 |  1657 |
+|           80% |    65.21% |    2195 |  3366 |
+|           70% |    67.31% |    3403 |  5056 |
+|---------------+-----------+---------+-------|
+
+Using min_count > 5

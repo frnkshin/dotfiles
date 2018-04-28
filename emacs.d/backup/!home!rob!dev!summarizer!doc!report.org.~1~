@@ -1,0 +1,7 @@
+#+TITLE: Word2Vec with Multiple Instance Learning to Detect Fake News
+#+AUTHOR: Hansol Shin
+#+LaTeX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \doublespacing
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+OPTIONS: H:2

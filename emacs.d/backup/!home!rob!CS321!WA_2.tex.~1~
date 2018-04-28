@@ -1,0 +1,140 @@
+% Created 2017-12-05 Tue 13:33
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{setspace}
+\doublespacing
+\usepackage[margin=1in]{geometry}
+\author{Hansol Shin}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Hansol Shin},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.3.1 (Org mode 9.1.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\begin{enumerate}
+\item What were your contributions to the project during the various phases? (one paragraph for
+\end{enumerate}
+each phase).
+-> There have been multiple phases for the CS321 project. The first phase started out to
+collect ideas from the team members and choose an interesting project that may motivate the
+majority of the team. Different members of the team had different ideas on what to make for
+this project. However, some of the ideas were too broad, and some were way out of our
+league to even finish developing in the course of the semester. In this process of confusion
+and clashing of ideas, I somewhat helped the team by sort of drifting them into focusing on
+one big subject instead of having multiple directions for the project. In our case the big subject
+was an alarm clock, with some features or multitudes of features that some users may want to
+see in a single app. Although a bit broad, that was our initial project idea if I am not suffering
+from a potential memory loss.
+The second phase of the project, which we did horribly on, was about requirement
+engineering. Prior to this, we had already set up a slack server to talk about the project and
+the required documents to submit. So the goal was to write a 'technical paper' with list of use
+cases and requirements for the specific application we were building. Lacking any
+knkowledge on how a technical paper should look like, we somehow managed to make a
+serious mistake of making a technical paper wordy. But not only that, making it wordy
+destructs the goal of making a clear suggestions and statements to its readers and especially
+us developers. Even now, I can assure the readers that they won't be able to connect every
+pieces of information together by just reading it once. In terms of my contribution, I worked on
+parts of everything except the traceability part, but I think I worked mostly on requirements
+and use cases. We also had fact-to-fact meetings at this point to work on P1.
+I think P2 is when our ideas because visualized. Before that, we had vague understanding
+of how the app should function or even look like. Because we were not so sure whether or not
+we had same vision in our heads for this project, all four of us met in person to make sure that
+everything is clarified for everyone. I sketched how the app should sort of look like, and other
+agreed on it, and we all started off from there. Because we visualized that time, everyone
+knew clearly on how everything should work in hand to hand. There were some other
+decisions that we did not stress well enough, but those were only minor issues in my
+understanding. We also went to the TA to discuss further about the document. We cut down
+significant bits of gibberish from our P2 document.
+For P3, my major contribution to the team was to draw class diagrams. Other than that, I
+also did some contributions in regards to technology. We set up our Git repo during this phase
+to make sure how everyone should handle. And for some of the mebers who weren't really
+sure about how branching works in git, I explained with some drawings how one should use
+git without trouble.
+\begin{enumerate}
+\item What did you learn about working on a team project?
+\end{enumerate}
+-> I have done some prior project which were team-based. The main problem that, because
+we are still students and we lack work experiences, and have some misunderstanding on how
+the project should be handled. For this particular project, we had some disagreements in the
+beginning, but I think that was due to everyone not exaclty thinking the same thing. My idea
+for the project development (or process) was that we initially agree on an app to build. And
+features or requirements to the app are made during discussions in group meetings. The
+same happened for most of our group meetings, but first one or two meetings did not go as
+planned in my opinion.
+\begin{enumerate}
+\item What did you learn about project leadership in a team project?
+\end{enumerate}
+-> I think leadership takes skill. A leader needs to have knowledge on all the technical skills
+the project is requiring. Not only that, the leader needs to be aware of what is going on with
+different team members. Leader must also be able to hear out for different opinions, and know
+which opinions to take and which opinions to scrap.
+\begin{enumerate}
+\item How frequently did your team meet face-to-face? Were there any issues with meeting in-
+\end{enumerate}
+person? How productive were the meetings?
+-> We met at least once a week, if not twice a week. But it was hard to cope with the
+meetings for four different people. Some meetings in the beginning of the semester were not
+as productive due to not having a focused vision for the project. We had some meetings to go
+over development environment setup, and git. I think those were semi-productive. It should
+benefit all the members to be on the same boat when using those technologies. But aside
+from in-person meetings, we also utilize a slack server that deals with all the
+information/documentation sharing.
+\begin{enumerate}
+\item From your perspective, what went well on the project?
+\end{enumerate}
+→ I can’t really conclude on what went well on the project since we haven’t delivered our final
+product yet. But one thing that went well all around is that everyone have been good at
+meeting in person. There were some times when we had some scheduling difficulties but we
+managed to find a time when everyone was free and people all showed up to those sessions.
+\begin{enumerate}
+\item From your perspective, what did not go well on the project?
+\end{enumerate}
+→ I think what did not go well about the project is that we had some hard time coming up with
+a good idea. But also, we weren’t really sure about how the end-product should look like for
+the project. Also we had some communication problems, which resulted in people
+misunderstanding. And we still can’t get a glimpse of what we were trying to do based on the
+earlier project deliverables.
+\begin{enumerate}
+\item Based on your experiences this semester, what would you do differently next time on a
+\end{enumerate}
+software development project?
+→ I think I will be more technical and precise, make sure nobody tries to overly describe
+something. I think all technical conversations should be on point, especially if you don’t know
+others’ backgrounds.
+\begin{enumerate}
+\item Based on your experience, what would you advise a project team starting CS/SWE 321?
+\end{enumerate}
+→ Make sure that everyone on the team are on the same page. We had hard time coping
+with that, mainly due to people talking similar things but not similar picture in their head. Early
+sketches of the overall project definitely helps in envisioning it.
+\begin{enumerate}
+\item Was this a good project to work on or would you have preferred a different one? Why/why
+\end{enumerate}
+not?
+→ I sort of feel like we should have done a web app. It would’ve been much easier to set
+everything up since almost everything web is cross-platform. We are doing android, and we
+wasted some hours trying to get the dev environment set up, especially on multiple operating
+systems, OS X, Windows, and Linux.
+\begin{enumerate}
+\item Based on your assessment of how they performed, assign a grade (0 – 100) to each
+\end{enumerate}
+member of your team. You can also include N (for no comment). Write a few sentences
+\end{document}

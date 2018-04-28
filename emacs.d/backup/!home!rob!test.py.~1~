@@ -1,0 +1,5 @@
+def findNumber(arr, k):
+    if k in arr:
+        print("YES")
+    else:
+        print("NO")

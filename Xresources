@@ -1,0 +1,66 @@
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+URxvt*cursorColor: #EAEAE8
+
+URxvt*background: #2D2D2D
+URxvt*foreground: #EAEAE8
+URxvt*color0: #2D2D2D
+URxvt*color1: #E06C75
+URxvt*color2: #98C379
+URxvt*color3: #c47f2c
+URxvt*color4: #30309b
+URxvt*color5: #C678DD
+URxvt*color6: #56B6C2
+URxvt*color7: #9999aa
+URxvt*color8: #303030
+URxvt*color9: #E06C75
+URxvt*color10: #80ff00
+URxvt*color11: #ffba68
+URxvt*color12: #5f5fee
+URxvt*color13: #bb88dd
+URxvt*color14: #4eb4fa
+URxvt*color15: #d0d0d0
+
+! Hide Scroll bar
+URxvt*scrollBar: false
+! Font
+URxvt*font: xft:Misc\ Ohsnap:size=10,xft:DroidSansMono\ Nerd\ Font:size=13, xft:Fira\ Mono\ for\ Powerline:size=11,xft:NanumBarunGothic:size=11
+
+! Cursor Themes
+Xcursor.theme: Paper
+Xcursor.size: 10
+
+! Extensions
+URxvt.perl-ext-common: default.clipboard,resize-font
+
+! Copy and Paste
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+
+! Text Size
+URxvt.resize-font.smaller: C-minus
+URxvt.resize-font.bigger: C-equal
+
+! Rofi setup
+rofi.color-enabled: true
+
+rofi.color-window: #1E272B, #9D6A47, #9D6A47
+rofi.color-normal: #1E272B, #EAD49B, #1E272B, #1E272B, #78824B
+rofi.color-active: #1E272B, #EAD49B, #1E272B, #1E272B, #78824B
+rofi.color-urgent: #1E272B, #EAD49B, #1E272B, #1E272B, #78824B
+
+rofi.separator-style: solid
+rofi.sidebar-mode: false
+rofi.lines: 5
+rofi.font: Hack Regular 12
+rofi.bw: 1
+rofi.columns: 2
+rofi.padding: 5
+rofi.fixed-num-lines: true
+rofi.hide-scrollbar: true

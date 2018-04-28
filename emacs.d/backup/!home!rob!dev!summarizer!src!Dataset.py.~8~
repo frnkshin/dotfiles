@@ -1,0 +1,54 @@
+# DATASET.PY
+# Written by Hansol Shin on Nov-30-2017
+
+import csv
+import sys
+import collections
+import nltk
+
+csv.field_size_limit(sys.maxsize)
+
+class FakeNews:
+
+    def __init__(self):
+        self.__file_path = "../res/fake.csv"
+        self.__file_object = open(self.__file_path, 'r', encoding='utf8', newline='')
+        self.data = collections.defaultdict(dict)
+
+    def load_data(self):
+        reader = csv.reader(self.__file_object, quotechar='"', delimiter=',')
+        next(reader, None)
+        for i, row in enumerate(reader):
+            if row[6] == 'english':
+                self.data[row[0]]['head'] = row[4]
+                self.data[row[0]]['text'] = row[5].replace('\n', ' ')
+        return self.data
+
+    def save(self, path):
+        with open(path, 'w+') as f:
+            for data in self.data:
+                f.write(self.data[data]['head'] + '\n')
+                f.write(self.data[data]['text'] + '\n')
+
+class RealNews:
+
+    def __init__(self):
+        self.__file_path = "../res/real.csv"
+        self.__file_object = open(self.__file_path, 'r', encoding='latin1', newline='')
+        self.__file_length = 0
+        self.data = collections.defaultdict(dict)
+
+    def load_data(self):
+        reader = csv.reader(self.__file_object, quotechar='"', delimiter=',')
+        for i, row in enumerate(reader):
+            self.data[i]['head'] = row[2]
+            self.data[i]['text'] = row[5].replace('\n', ' ')
+            self.data[i]['summary'] = row[4]
+        return self.data
+
+    def save(self, path):
+        with open(path, 'w+') as f:
+            for data in self.data:
+                f.write(self.data[data]['head'] + '\n')
+                f.write(self.data[data]['text'] + '\n')
+                f.write(self.data[data]['summary'] + '\n')

@@ -1,0 +1,20 @@
+# MAIN.PY
+# Written by Hansol Shin on Nov-30-2017
+from Dataset import FakeNews, RealNews
+
+# Normalizes words to base words
+def normalize(text):
+
+    
+
+# Main Function
+if __name__ == "__main__":
+
+    # Load Datasets
+    fake = FakeNews().load_data()
+    real = RealNews().load_data()
+
+    # basic idea
+    # normalize words
+    # summarize
+    # mil

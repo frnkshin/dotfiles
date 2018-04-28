@@ -1,0 +1,145 @@
+;;; user-configs --- contains user configuration
+;;; Commentary:
+;;; Code:
+(require 'package)
+(defun setup-evil-leaders ()
+    (require 'evil-leader)
+    (global-evil-leader-mode 1)
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key
+        "ff" 'helm-find-files
+        "qq" 'save-buffers-kill-emacs
+        "bb" 'list-buffers
+        "lp" 'list-packages
+        "?"  'helm-M-x
+        "wV" 'split-window-right
+        "wS" 'split-window-below
+        "TAB" 'other-window))
+
+(defun setup-which-key ()
+    (require 'which-key)
+    (which-key-mode 1)
+    (which-key-setup-side-window-bottom)
+    (which-key-setup-minibuffer))
+
+(defun setup-eyebrowse ()
+    (require 'eyebrowse)
+    (eyebrowse-mode t))
+
+(defun setup-dashboard ()
+    (dashboard-setup-startup-hook))
+
+(defun setup-org-mode ())
+
+(defun setup-spaceline ()
+  (require 'spaceline-all-the-icons)
+  (use-package spaceline-all-the-icons
+	       :after spaceline
+	       :config (spaceline-all-the-icons-theme)))
+
+(defun setup-rainbows ()
+  (require 'rainbow-delimiters)
+  (require 'rainbow-identifiers)
+  (rainbow-delimiters-mode)
+  (rainbow-identifiers-mode)
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'prog-mode-hook 'rainbow-identifiers-mode))
+
+(defun setup-flycheck ()
+    (require 'flycheck)
+    ;; turn on flychecking globally
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    ;; disable jshint since we prefer eslint checking
+    (setq-default flycheck-disabled-checkers
+        (append flycheck-disabled-checkers '(javascript-jshint)))
+    ;; use eslint with web-mode for jsx files
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    ;; customize flycheck temp file prefix
+    (setq-default flycheck-temp-prefix ".flycheck")
+    ;; disable json-jsonlist checking for json files
+    (setq-default flycheck-disabled-checkers
+        (append flycheck-disabled-checkers '(json-jsonlist))))
+
+(defun setup-web-mode ()
+    (require 'web-mode)
+    (require 'nvm)
+    (require 'rjsx-mode)
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode))
+    (setq web-mode-markup-indent-offset 2
+          web-mode-css-indent-offset 2
+          web-mode-code-indent-offset 2)
+    (setq js-indent-level 2)
+    (add-to-list 'auto-mode-alist '("components\\/.*\\.js\\'" . rjsx-mode)))
+
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+    (if (equal web-mode-content-type "jsx")
+        (let ((web-mode-enable-part-face nil))
+            ad-do-it)
+        ad-do-it))
+
+(defun setup-ivy ()
+    (require 'ivy)
+    (ivy-mode 1)
+    (global-set-key (kbd "M-x") 'counsel-M-x)
+    (global-set-key (kbd ":") 'counsel-M-x))
+    
+(defun setup-helm ()
+    (require 'helm)
+    (require 'helm-config)
+    (helm-mode 1))
+
+(defun setup-evil ()
+    (require 'evil)
+    (require 'neotree)
+    (evil-mode 1)
+    (evil-set-initial-state 'package-menu-mode 'motion)
+    (evil-define-key 'motion package-menu-mode-map
+        "i" 'package-menu-mark-install
+        "d" 'package-menu-mark-delete
+        "u" 'package-menu-mark-upgrade
+        "x" 'package-menu-execute
+        "U" 'package-menu-mark-unmark)
+    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+    (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+    (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter))
+
+(defun user-key-config ()
+  (define-key minibuffer-local-map (kbd "ESC") 'keyboard-escape-quit)
+  (evil-define-minor-mode-key 'normal 'visual-line-mode (kbd "j") 'evil-next-visual-line)
+  (evil-define-minor-mode-key 'normal 'visual-line-mode (kbd "k") 'evil-previous-visual-line)
+  (evil-define-minor-mode-key 'normal 'visual-line-mode (kbd "$") 'evil-end-of-visual-line)
+  (evil-define-minor-mode-key 'normal 'visual-line-mode (kbd "^") 'evil-beginning-of-visual-line))
+
+(defun user-theme ()
+    (load-theme 'gruvbox t))
+
+(defun user-misc-config ()
+    (global-linum-mode 1)
+    (global-visual-line-mode nil)
+    (groovy-mode)
+    (toggle-scroll-bar -1)
+    (menu-bar-mode -1)
+    (tool-bar-mode -1))
+
+(defun user-init ()
+    (setup-evil-leaders)
+    (setup-which-key)
+    (setup-dashboard)
+    (setup-org-mode)
+    (setup-flycheck)
+    (setup-rainbows)
+    (setup-web-mode)
+    (setup-helm)
+    (setup-spaceline)
+    (setup-evil))
+
+(provide 'user-configs)

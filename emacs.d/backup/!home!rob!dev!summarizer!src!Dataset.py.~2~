@@ -1,0 +1,14 @@
+# DATASET.PY
+# Written by Hansol Shin on Nov-30-2017
+
+class FakeNews:
+
+    def __init__(self):
+        self.__file_path = "../res/fake.csv"
+        self.__file_object = open(self.__file_path, 'r', encoding='utf8')
+
+class RealNews:
+
+    def __init__(self):
+        self.__file_path = "../res/news_summary.csv"
+        self.__file_object = open(self.__file_path, 'r', encoding='utf8')

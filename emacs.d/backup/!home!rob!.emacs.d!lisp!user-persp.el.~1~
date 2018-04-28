@@ -1,0 +1,9 @@
+;;; user-persp --- configuration for persp-mode
+
+;;; Commentary:
+;;; Code:
+
+(require 'persp-mode)
+(persp-mode t)
+
+;;; user-persp.el ends here

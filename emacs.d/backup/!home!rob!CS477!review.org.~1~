@@ -1,0 +1,126 @@
+
+
+1. Programming in android uses an event-based model. What is meant by this and how is it different from the traditional programming mode?
+
+event-driven programming is a programming paradigm in which the flow of the program is determined by events such as user actions (mouse clicks, key presses), sensor outputs, or messages from other programs/threads.
+Traditional programming flow is linear, each step is determining by the programmer in a series of statements, the user is guided to follow these steps.
+
+2. What is the purpose of the Android Manifest file and how is it used?
+    -> located in the apps root directory. The manifest file provides essential info about your app to the android system, which the system must have before it can run any of the app’s code. It names the app. Permissions that the app requires are declared here. Activities and services are also declared here. 
+
+Every application must have an AndroidManifest.xml file (with precisely that name) in its root directory. The manifest file provides essential information about your app to the Android system, which the system must have before it can run any of the app's code.
+
+3.  What is a thread? There are 2 primary rules regarding threading in android app, what are they and why are they important?
+
+-> Threading = a thread is a thread of execution in a program. The java VM allows an application to have multiple threads of execution running concurrently . 
+Threading =  multiple logical control flows within a single process. Shared address space
+
+
+
+Every thread has a priority. Threads with higher priority are executed in preference to threads with lower priority. Each thread may or may not also be marked as a daemon. When code running in some thread creates a new Thread object, the new thread has its priority initially set equal to the priority of the creating thread, and is a daemon thread if and only if the creating thread is a daemon.
+
+Rule 1. Do not block the UI thread. Don’t do anything on the main thread that may halt the user interface. Such as networking, heavy/complex calculations. 
+Rule 2: Do not access the Android UI toolkit from outside the UI thread
+
+UI toolkit not thread-safe
+A piece of code is thread-safe if it only manipulates shared data structures in a manner that guarantees safe execution by multiple threads at the same time. 
+
+Pro’s of threads
+Easy to share data structures between threads
+Threads are more efficient than processes
+Cons
+Unintentional sharing can introduce subtle and hard-to-reproduce errors.
+
+4. Draw android activity life cycle. 
+
+
+
+
+
+
+5. Explain what an activity must do to start another activity and send it data. If data needs to be returned, how is this achieved? 
+
+-> To start an activity, create an intent object specifying the activity to start(can be explicit (by name) or implicit (by purpose)). 
+Can start new activity with startActivity() or if you want a return startActivityForResult(). 
+An intent is a data structure that specifies -operation to be performed, - event that has occurred .  
+
+Explicitly start activities -  name of the activity is given(must be listed in the manifest)
+    EX: Intent intent = new Intent(this, Activity2.class);
+Implicitly start activity -  activity to be started is deterined by parameters to the intent. 
+    EX: Uri webapp = Uri.parse(“https://android.com”);
+Intent webIntent = new Intent (Intent.Activity_View, Webpage) 
+
+Data can be sent to an activity as it is created. 
+
+To get a return after activity ends - startActivityForResult() - must be processed with a callback function. 
+
+
+
+6. What is a listener and what kinds of UI elements can a listener be associated with? 
+-> Eventlistener is an interface in the view class that contains a single callback method. These methods will be called by the Android framework when the View to which the listener has been registered is triggered by user interaction with the item in the UI. 
+
+7. Fragments are sometimes described as being somewhere between a view and an activity. Explain why this is the case? 
+
+Fragment(s) can be embedded in an activity to create multi-pane UI. A single fragment can be reused across multiple activities. 
+
+Fragments have their own lifecycles and receive their own events.
+But, Activities lifecycle interacts with associated fragment’s lifecycle. 
+When an activity pauses, its fragments are paused
+When activity is destroyed the fragment is also destroyed. 
+Fragment life cycle
+
+
+
+
+8. What is the purpose of an adapter object?
+Adapters defines how each row is displayed. Adapters convert non-ui things inti UI things
+ArrayAdapter can handle databased on arrays or java.util.list. 
+SimplecursorAdapter can handle database related data
+
+9. What is the difference between an explicit intent and an implicit intent? 
+
+Explicit intent - is most commonly used when launching an activity (from another one) within the same application. And the component name is generally specified to which the intent has to be delivered. 
+Implicit intent - intents do not directly specify the android components which should be called, it only specifies action to be performed. An Uri can be used with the implicit intent to specify data type. 
+
+Explicitly start activities -  name of the activity is given(must be listed in the manifest)
+    EX: Intent intent = new Intent(this, Activity2.class);
+Implicitly start activity -  activity to be started is deterined by parameters to the intent. 
+    EX: Uri webapp = Uri.parse(“https://android.com”);
+Intent webIntent = new Intent (Intent.Activity_View, Webpage) 
+
+10. What is a Cursor class? Where is it used
+Cursor is used to access query results when dealing with a database. 
+Simple cursor adapter - can be used with listView
+Cursor can be used to iterate through query results . row by row. Can easily get data for a particular column. 
+
+11.  What is a handler and why is it used? Give a simple example?
+Handlers are the best way of communication between the background and UI thread. Generally Handlers are associated with message Queue of a Thread and they are used to send messages and runnable to the Message. Handler Used to communicate between the UI and Background thread
+
+12. What is an asyncTask and why you would use one?
+
+It is an android abstract class that helps application handle/do work efficiently, it allows app to perform long lasting tasks/background operations and show the result in the main UI thread without affecting the main thread. 
+
+13. What is the purpose of the intent Filter class when used in the manifest? Name/describe two pieces of information that can be specified in an intentFilter that allow its use. 
+
+Intent filter spevifies the typres of intents to which an activity, service, broadcast receiver can respond to, by declaring the capabilities of a component. 
+
+This is from piazza:
+IntentFilters are used with implicit intents that tell other apps what kind of intents your app can receive/handle. 
+Two pieces of information are action(specifies what kind of action to be performed) and category(the kind of component that should receive/handle the intent).
+
+14. Android supports drawing 2D graphs to Views and to Cancase. Under what condition(s) would you choose to draw to a View? Under what conditions would you choose to draw to a canvas? 
+View - Drawing to a view is a good choice when you want to draw simple graphics that don't need to change dynamically and aren't part of a performance-intensive app, such as a game. For example, you should draw your graphics into a view when you want to display a static graphic or predefined animation, within an otherwise static app.
+
+Canvas -Drawing to a canvas is better when your app needs to regularly redraw itself. Apps, such as video games, should draw to the canvas on their own. However, there's more than one way to do this:
+
+15. What is a motion event and what function is generally used to handle this type of event? 
+
+Motion events represent motion on the UI. Records events time action, pressure,  location, source. 
+Most common motion event is touch. TouchListeners are used to handle this event. 
+
+16. What are permissions and what is the purpose of permissions? 
+To maintain security for the system and users, Android requires apps to request permission before the apps can use certain system data and features. Depending on how sensitive the area is, the system may grant the permission automatically, or it may ask the user to approve the request. 
+When installing an app, permissions are required for the app to access which capabilities or information that app can access. 
+Permissions are declared in the androidmanifest file. 
+
+

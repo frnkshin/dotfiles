@@ -1,0 +1,130 @@
+%matplotlib
+
+import pandas as pd
+import numpy as np
+import multiprocessing
+import nltk
+from nltk.corpus import stopwords
+from nltk import FreqDist
+from collections import Counter
+import matplotlib.pyplot as plt
+import seaborn as sns
+import random
+import re
+import gensim.models.word2vec as w2v
+import sklearn.manifold
+import time
+sns.set_style("darkgrid")
+
+# get document lengths to plot histogram
+def doc_length(text):
+    return len([word for sent in text for word in sent])
+
+def sent_tokenizer(text):
+    """
+    Function to tokenize sentences
+    """
+    text = nltk.sent_tokenize(text)
+    return text
+
+def sentence_cleaner(text):
+    """
+    Function to lower case remove all websites, emails and non alphabetical characters
+    """
+    new_text = []
+    for sentence in text:
+        sentence = sentence.lower()
+        sentence = re.sub("((\S+)?(http(s)?)(\S+))|((\S+)?(www)(\S+))|((\S+)?(\@)(\S+)?)", " ", sentence)
+        sentence = re.sub("[^a-z ]", "", sentence)
+        sentence = nltk.word_tokenize(sentence)
+        sentence = [word for word in sentence if len(word) > 1]  # exclude 1 letter words
+        new_text.append(sentence)
+    return new_text
+
+def apply_all(text):
+    return sentence_cleaner(sent_tokenizer(text))
+
+if __name__ == '__main__':
+    fake = pd.read_csv('./res/fake.csv', usecols=['uuid', 'author', 'title', 'text', 'language', 'site_url', 'country'])
+    fake = fake[fake.language == 'english']
+    fake['title'].fillna(value="", inplace=True)
+    fake.dropna(axis=0, inplace=True, subset=['text'])
+    fake = fake.sample(frac=1.0)  # shuffle the data
+    fake.reset_index(drop=True, inplace=True)
+    fake.head()
+
+    real = pd.read_csv('./res/real.csv', usecols=['headlines', 'text', 'ctext'], encoding="latin1")
+    real['headlines'].fillna(value="", inplace=True)
+    real.dropna(axis=0, inplace=True, subset=['ctext'])
+    real = real.sample(frac=1.0)  # shuffle the data
+    real.reset_index(drop=True, inplace=True)
+    real.head()
+
+    '''
+    fake['sent_tokenized_text'] = fake['text'].apply(apply_all)
+    fake.head()
+    '''
+    real['sent_tokenized_text'] = real['ctext'].apply(apply_all)
+    real.head()
+
+    all_real_words = [word for item in list(real['sent_tokenized_text']) for word in item]
+    all_real_words = [subitem for item in all_real_words for subitem in item]
+    fdist = FreqDist(all_real_words)
+    # choose k and visually inspect the bottom 10 words of the top k
+    k = 30000
+    top_k_words = fdist.most_common(k)
+    top_k_words[-10:]
+
+    # document length
+    real['doc_len'] = real['sent_tokenized_text'].apply(doc_length)
+    doc_lengths = list(real['doc_len'])
+    real.drop(labels='doc_len', axis=1, inplace=True)
+
+    print("length of list:",len(doc_lengths),
+        "\naverage document length", np.average(doc_lengths),
+        "\nmaximum document length", max(doc_lengths))
+
+    # plot a histogram of document length
+    num_bins = 1000
+    fig, ax = plt.subplots(figsize=(12,6));
+    # the histogram of the data
+    n, bins, patches = ax.hist(doc_lengths, num_bins, normed=1)
+    ax.set_xlabel('Document Length (tokens)', fontsize=15)
+    ax.set_ylabel('Normed Frequency', fontsize=15)
+    ax.grid()
+    ax.set_xticks(np.logspace(start=np.log10(250),stop=np.log10(4000),num=7, base=10.0))
+    plt.xlim(0,4000)
+    ax.plot([np.average(doc_lengths) for i in np.linspace(0.0,0.0022,100)], np.linspace(0.0,0.0022,100), '-',
+            label='average doc length')
+    ax.legend()
+    ax.grid()
+    fig.tight_layout()
+    plt.show()
+
+
+    all_sentences = list(real['sent_tokenized_text'])
+    all_sentences = [subitem for item in all_sentences for subitem in item]
+    all_sentences[:2]  # print first 5 sentences
+
+    # Word2Vec
+    num_features = 300  # number of dimensions
+    # if any words appear less than min_word_count amount of times, disregard it
+    # recall we saw that the bottom 10 of the top 30,000 words appear only 7 times in the corpus, so lets choose 10 here
+    min_word_count = 10
+    num_workers = multiprocessing.cpu_count()
+    context_size = 7  # window size around target word to analyse
+    downsampling = 1e-3  # downsample frequent words
+    seed = 1  # seed for RNG
+
+    real2vec = w2v.Word2Vec(
+        sg=1,
+        seed=seed,
+        workers=num_workers,
+        size=num_features,
+        min_count=min_word_count,
+        window=context_size,
+        sample=downsampling
+    )
+
+    real2vec.build_vocab(all_sentences)
+    real2vec.train(all_sentences, total_examples=real2vec.corpus_count, epochs=real2vec.iter)

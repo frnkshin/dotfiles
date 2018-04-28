@@ -1,0 +1,13 @@
+
+
+
+(defun INIT-LOOP (lst)
+  (let ((nlst '()) (r 0) (len (length lst)))
+    (loop for i from 1 to len do
+         (setf r (random (length lst)))
+         (setf nlst (append nlst (list (nth r lst))))
+         (setf lst (remove (nth r lst) lst)))
+    (append nlst (list (first nlst)))))
+
+(defun EDGE-COST (FROM TO CITY-MAP)
+  (car (cdr (nth (position (LIST FROM TO) CITY-MAP :test #'equal :key #'car) CITY-MAP))))

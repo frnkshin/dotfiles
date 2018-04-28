@@ -1,0 +1,18 @@
+import pandas as pd
+
+
+if __name__ == '__main__':
+    fake = pd.read_csv('./res/fake.csv', usecols=['uuid', 'author', 'title', 'text', 'language', 'site_url', 'country'])
+    fake = fake[fake.language == 'english']
+    fake['title'].fillna(value="", inplace=True)
+    fake.dropna(axis=0, inplace=True, subset=['text'])
+    fake = fake.sample(frac=1.0)  # shuffle the data
+    fake.reset_index(drop=True, inplace=True)
+    fake.head()
+
+    real = pd.read_csv('./res/real.csv', usecols=['author', 'headlines', 'text', 'ctext'])
+    real['headlines'].fillna(value="", inplace=True)
+    real.dropna(axis=0, inplace=True, subset=['text'])
+    real = real.sample(frac=1.0)  # shuffle the data
+    real.reset_index(drop=True, inplace=True)
+    real.head()
