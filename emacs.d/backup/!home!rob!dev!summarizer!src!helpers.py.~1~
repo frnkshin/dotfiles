@@ -1,6 +1,0 @@
-# HELPERS.PY
-# Contains helpers
-
-class Normalizer:
-    def __init__(self, dataset):
-        self.dataset = dataset

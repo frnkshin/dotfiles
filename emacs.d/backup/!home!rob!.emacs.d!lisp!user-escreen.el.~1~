@@ -1,4 +1,0 @@
-;;;
-
-(load "escreen")
-(escreen-install)

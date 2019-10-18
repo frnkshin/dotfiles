@@ -1,8 +1,0 @@
-# MAIN.PY
-# Written by Hansol Shin on Nov-30-2017
-from Dataset import FakeNews, RealNews
-
-if __name__ == "__main__":
-    # do stuff
-    fake = FakeNews().load_fake()
-    real = RealNews().load_real()
