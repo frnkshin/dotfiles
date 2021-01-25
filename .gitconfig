@@ -1,0 +1,31 @@
+[user]
+	name = Frank Shin
+	email = im@frnkshin.io
+[core]
+    editor = vim
+    autocrlf = false
+[merge]
+    tool = meld
+[alias]
+    unstage = reset HEAD-
+    show-files = "!f() { git diff-tree --name-only -r \"$1\"; }; f"
+    show-diff-for-last = !sh -c 'git show HEAD~$1' -
+    reset-file = checkout HEAD -- 
+    reset-all = reset --hard HEAD
+    rebase-last = !sh -c 'git rebase -i HEAD~$1' -
+    lp = log --pretty=format:"%ad%Cred%d\\ %C(yellow)%h\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    log-pretty = log --pretty=format:"%ad%Cred%d\\ %C(yellow)%h\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+    log-find = !git lp --oneline --color=always | grep -i
+    lf = !git lp --oneline --color=always | grep -i
+    log-search = !git lp --oneline --color=always | grep -i
+    ls = !git lp --oneline --color=always | grep -i
+    pr = !sh -c 'git fetch $1 pull/$2/head:pr-$1-$2 && git checkout pr-$1-$2' -
+    follow = log --follow -- 
+    head = rev-parse --short HEAD
+    branch-find = !sh -c 'git branch -a --color=always | grep $1' -
+    branch-search = !sh -c 'git branch -a --color=always | grep $1' -
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
